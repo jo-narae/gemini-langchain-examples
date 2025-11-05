@@ -48,7 +48,7 @@ prompt = """
 # 6) 모델 호출
 # -----------------------------
 response = client.models.generate_content(
-    model="gemini-2.0-flash",  # 사용할 모델
+    model=os.getenv("GEMINI_MODEL", "gemini-2.5-flash-lite"),  # 사용할 모델
     contents=prompt,           # 프롬프트 전달
     config=types.GenerateContentConfig(
         system_instruction=system_instruction,  # 시스템 지시어 적용

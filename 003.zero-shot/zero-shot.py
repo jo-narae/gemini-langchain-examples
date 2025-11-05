@@ -23,7 +23,7 @@ client = genai.Client(api_key=api_key)
 # 4) 모델 호출
 # -----------------------------
 response = client.models.generate_content(
-    model="gemini-2.0-flash",   # 사용할 모델
+    model=os.getenv("GEMINI_MODEL", "gemini-2.5-flash-lite"),   # 사용할 모델
     contents="이 문장이 긍정적인지 부정적인지 분류해줘: '오늘 날씨 좋다'",
     config=types.GenerateContentConfig(
         thinking_config=types.ThinkingConfig(thinking_budget=0)  # Thinking 비활성화

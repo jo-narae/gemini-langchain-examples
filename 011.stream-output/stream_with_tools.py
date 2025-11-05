@@ -39,7 +39,7 @@ print()
 
 # 모델 초기화
 llm = ChatGoogleGenerativeAI(
-    model="gemini-2.0-flash",
+    model=os.getenv("GEMINI_MODEL", "gemini-2.5-flash-lite"),
     temperature=0.7,
 )
 

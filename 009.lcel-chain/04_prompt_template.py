@@ -19,6 +19,15 @@ if not api_key:
     print("❌ GEMINI_API_KEY를 찾을 수 없습니다.")
     exit(1)
 
+# 모델 초기화 (프롬프트 템플릿 예제에서는 모델이 필요하지 않음)
+# 하지만 Step 5에서 사용하기 위해 여기서 초기화합니다
+from langchain_google_genai import ChatGoogleGenerativeAI
+llm = ChatGoogleGenerativeAI(
+    model=os.getenv("GEMINI_MODEL", "gemini-2.5-flash-lite"),
+    temperature=0.7,
+    google_api_key=api_key,
+)
+
 print("=" * 70)
 print("Step 4: 프롬프트 템플릿")
 print("=" * 70)

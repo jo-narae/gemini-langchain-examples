@@ -23,7 +23,7 @@ if not api_key:
 
 # 모델 및 히스토리 시스템 설정 (Step 1과 동일)
 model = ChatGoogleGenerativeAI(
-    model="gemini-2.0-flash-exp",
+    model=os.getenv("GEMINI_MODEL", "gemini-2.5-flash-lite"),
     temperature=0.7,
     google_api_key=api_key,
     model_kwargs={

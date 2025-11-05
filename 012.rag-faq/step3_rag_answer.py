@@ -35,7 +35,7 @@ def process_question(user_question: str):
     """사용자 질문에 대한 RAG 처리"""
     # 임베딩 모델 생성 (저장할 때와 동일한 모델 사용)
     embeddings = HuggingFaceEmbeddings(
-        model_name="sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
+        model_name=os.getenv("EMBEDDING_MODEL", "BAAI/bge-m3")
     )
 
     # 벡터 DB 로드
@@ -77,7 +77,7 @@ def generate_answer(question: str, context: List[Document]) -> str:
 응답:"""
 
     # Gemini 모델 호출
-    model = genai.GenerativeModel('gemini-2.0-flash-exp')
+    model = genai.GenerativeModel(os.getenv("GEMINI_MODEL", "gemini-2.5-flash-lite"))
     response = model.generate_content(prompt)
 
     return response.text

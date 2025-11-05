@@ -32,14 +32,14 @@ print("📌 Step 1: 모델 초기화")
 print("-" * 70)
 
 llm = ChatGoogleGenerativeAI(
-    model="gemini-2.0-flash-exp",
+    model=os.getenv("GEMINI_MODEL", "gemini-2.5-flash-lite"),
     temperature=0.7,
     max_output_tokens=1000,
     google_api_key=api_key
 )
 
 print("✅ ChatGoogleGenerativeAI 모델 생성 완료")
-print(f"   모델: gemini-2.0-flash-exp")
+print(f"   모델: {os.getenv('GEMINI_MODEL', 'gemini-2.5-flash-lite')}")
 print(f"   Temperature: 0.7")
 print()
 

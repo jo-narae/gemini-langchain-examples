@@ -72,7 +72,7 @@ while True:
     # 7) 모델 호출 (전체 히스토리 전달)
     # -----------------------------
     response = client.models.generate_content(
-        model="gemini-2.0-flash",
+        model=os.getenv("GEMINI_MODEL", "gemini-2.5-flash-lite"),
         contents=history,  # 지금까지의 대화 기록 전체
         config=types.GenerateContentConfig(
             system_instruction=system_instruction,  # 시스템 지시어 반영

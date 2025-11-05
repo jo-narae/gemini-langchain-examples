@@ -39,7 +39,7 @@ while True:
 
     # 모델 호출
     response = client.models.generate_content(
-        model="gemini-2.0-flash",     # 사용할 Gemini 모델
+        model=os.getenv("GEMINI_MODEL", "gemini-2.5-flash-lite"),     # 사용할 Gemini 모델
         contents=user_input,          # 사용자 입력 프롬프트
         config=types.GenerateContentConfig(
             system_instruction=system_instruction,   # 시스템 지시어 반영

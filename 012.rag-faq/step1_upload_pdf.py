@@ -19,9 +19,9 @@ from langchain_community.document_loaders import PyMuPDFLoader
 from typing import List
 import os
 from pathlib import Path
+from dotenv import load_dotenv
 
 # 환경변수 설정
-from dotenv import load_dotenv
 env_path = Path(__file__).parent.parent / ".env"
 load_dotenv(dotenv_path=env_path)
 
@@ -63,7 +63,7 @@ def save_to_vector_store(documents: List[Document]) -> None:
     """청크를 벡터 임베딩으로 변환하여 FAISS DB에 저장"""
     # 로컬 임베딩 모델 사용 (무료, Google Cloud 인증 불필요)
     embeddings = HuggingFaceEmbeddings(
-        model_name="sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
+        model_name=os.getenv("EMBEDDING_MODEL", "BAAI/bge-m3")
     )
     vector_store = FAISS.from_documents(documents, embedding=embeddings)
     vector_store.save_local("faiss_index")

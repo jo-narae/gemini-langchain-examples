@@ -30,7 +30,7 @@ prompt = """
 
 # 5. 모델 호출 (신 SDK 방식)
 response = client.models.generate_content(
-    model="gemini-2.0-flash",   # 모델명 문자열로 직접 지정
+    model=os.getenv("GEMINI_MODEL", "gemini-2.5-flash-lite"),   # 모델명 문자열로 직접 지정
     contents=prompt,            # 사용자 프롬프트
     config=types.GenerateContentConfig(
         system_instruction=system_instruction,           # 시스템 지시어를 config에 전달

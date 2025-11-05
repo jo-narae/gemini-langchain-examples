@@ -39,7 +39,7 @@ system_instruction = "너는 친절한 AI 어시스턴트입니다."
 # 단일 질문
 print("\n✅ 단일 질문:")
 response = client.models.generate_content(
-    model="gemini-2.0-flash-exp",
+    model=os.getenv("GEMINI_MODEL", "gemini-2.5-flash-lite"),
     contents="파이썬이란?",
     config=types.GenerateContentConfig(system_instruction=system_instruction)
 )
@@ -52,7 +52,7 @@ history = []
 # 첫 번째 질문
 history.append(types.Content(role="user", parts=[types.Part(text="파이썬이란?")]))
 response1 = client.models.generate_content(
-    model="gemini-2.0-flash-exp",
+    model=os.getenv("GEMINI_MODEL", "gemini-2.5-flash-lite"),
     contents=history,
     config=types.GenerateContentConfig(system_instruction=system_instruction)
 )
@@ -63,7 +63,7 @@ history.append(types.Content(role="model", parts=[types.Part(text=response1.text
 # 두 번째 질문
 history.append(types.Content(role="user", parts=[types.Part(text="그럼 자바는?")]))
 response2 = client.models.generate_content(
-    model="gemini-2.0-flash-exp",
+    model=os.getenv("GEMINI_MODEL", "gemini-2.5-flash-lite"),
     contents=history,
     config=types.GenerateContentConfig(system_instruction=system_instruction)
 )
@@ -77,7 +77,7 @@ print("\n\n📌 Part 2: LangChain 사용")
 print("=" * 70)
 
 langchain_model = ChatGoogleGenerativeAI(
-    model="gemini-2.0-flash-exp",
+    model=os.getenv("GEMINI_MODEL", "gemini-2.5-flash-lite"),
     temperature=0.7,
     google_api_key=api_key
 )

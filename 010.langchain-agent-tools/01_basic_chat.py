@@ -24,7 +24,7 @@ if not api_key:
 
 # Gemini 모델 초기화
 llm = ChatGoogleGenerativeAI(
-    model="gemini-2.0-flash-exp",
+    model=os.getenv("GEMINI_MODEL", "gemini-2.5-flash-lite"),
     temperature=0.7,
     google_api_key=api_key,
 )

@@ -29,7 +29,7 @@ def search_related_docs(user_question: str) -> List[Document]:
     """사용자 질문과 유사한 문서를 벡터DB에서 검색"""
     # 임베딩 모델 생성 (저장할 때와 동일한 모델 사용)
     embeddings = HuggingFaceEmbeddings(
-        model_name="sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
+        model_name=os.getenv("EMBEDDING_MODEL", "BAAI/bge-m3")
     )
 
     # 벡터 DB 로드

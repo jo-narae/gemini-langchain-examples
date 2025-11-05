@@ -10,7 +10,12 @@
       "Bash(git add:*)",
       "Bash(git commit:*)",
       "Bash(git push)",
-      "Bash(..venvScriptspython.exe -m streamlit run start.py)"
+      "Bash(..venvScriptspython.exe -m streamlit run start.py)",
+      "Bash(rm:*)",
+      "Bash(.venvScriptspython.exe -m pip list)",
+      "Bash(./venv/Scripts/python.exe:*)",
+      "Bash(git log:*)",
+      "Bash(dir \"C:\\Users\\jo-ceo\\gemini-example\\08.langsmith\"\")"
     ],
     "deny": [],
     "ask": []

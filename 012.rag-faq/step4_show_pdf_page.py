@@ -36,7 +36,7 @@ genai.configure(api_key=api_key)
 def process_question(user_question: str):
     """사용자 질문에 대한 RAG 처리"""
     embeddings = HuggingFaceEmbeddings(
-        model_name="sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
+        model_name=os.getenv("EMBEDDING_MODEL", "BAAI/bge-m3")
     )
 
     vector_db = FAISS.load_local("faiss_index", embeddings, allow_dangerous_deserialization=True)
@@ -72,7 +72,7 @@ def generate_answer(question: str, context: List[Document]) -> str:
 
 응답:"""
 
-    model = genai.GenerativeModel('gemini-2.0-flash-exp')
+    model = genai.GenerativeModel(os.getenv("GEMINI_MODEL", "gemini-2.5-flash-lite"))
     response = model.generate_content(prompt)
 
     return response.text
